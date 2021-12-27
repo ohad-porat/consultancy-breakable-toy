@@ -157,11 +157,6 @@ Implementation Details
 
 - The goal with this story is to give you an opportunity to play with infinite scroll without destroying your previous work -- don't feel pressured to keep your manual and infinite scroll components as mutually DRY as possible
 
-Template should support mixed JS/TS
-Would be nice if template had example for checking if prettier and eslint are properly configured
-Unit tests for all methods
-Tests for any helpers
-
 ## Potential Advanced Topics
 
 - Use a bull worker and streams to process large CSVs
