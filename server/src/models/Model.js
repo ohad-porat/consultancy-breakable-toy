@@ -18,6 +18,17 @@ class Model extends ObjectionModel {
   $beforeUpdate() {
     this.updatedAt = new Date().toISOString();
   }
+
+  // https://vincit.github.io/objection.js/api/model/static-properties.html#static-uselimitinfirst
+  static get useLimitInFirst() {
+    return true;
+  }
+
+  // Allows relations to be specified as model name rather than path/Model class
+  // https://vincit.github.io/objection.js/api/model/static-properties.html#static-modelpaths
+  static get modelPaths() {
+    return [__dirname];
+  }
 }
 
 module.exports = Model;

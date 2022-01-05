@@ -1,14 +1,22 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const fs = require("fs");
 const path = require("path");
-const webpack = require("webpack");
 
+const dotenv = require("dotenv");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
+dotenv.config();
 const isDevelopment = ["development", "test", "e2e"].includes(
-  process.env.NODE_ENV || "development"
+  process.env.REACT_ENV || "development"
 );
 
 const initialEntryPoints = isDevelopment ? ["webpack-hot-middleware/client?reload=true"] : [];
+
+const appDirectory = fs.realpathSync(process.cwd());
+
+const resolveAppPath = (relativePath) => path.resolve(appDirectory, relativePath);
 
 let reactDomAlias = {};
 if (isDevelopment) {
@@ -17,65 +25,70 @@ if (isDevelopment) {
   };
 }
 module.exports = {
-  entry: [...initialEntryPoints, path.join(__dirname, "./src/main.js")],
+  target: "web",
+  entry: [...initialEntryPoints, path.join(__dirname, "./src/main")],
   context: path.resolve(__dirname),
   devtool: isDevelopment ? "source-map" : false,
   mode: isDevelopment ? "development" : "production",
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.REACT_ENV": JSON.stringify(process.env.REACT_ENV),
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
     new HtmlWebpackPlugin({
-      title: "Engage",
+      title: "Consulting Breakable Toy",
       template: path.join(__dirname, "public/index.template.html"),
     }),
   ],
   module: {
     rules: [
+      // {
+      //   test: /\.(ts|tsx)$/,
+      //   exclude: /(node_modules|bower_components)/,
+      //   loader: "awesome-typescript-loader",
+      //   options: {
+      //     // useCache: true,
+      //     transpileOnly: true,
+      //   },
+      // },
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
         options: { presets: ["@babel/env"], cwd: path.resolve(__dirname) },
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg|woff|woff2)$/i,
+        // exclude: /(node_modules|bower_components)/,
         loader: "file-loader",
       },
       {
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.pcss$/,
         use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: isDevelopment,
-              esModule: true,
-              hmr: isDevelopment,
-            },
           },
           {
-            loader: "sass-loader",
+            loader: "postcss-loader",
             options: {
-              sourceMap: isDevelopment,
+              postcssOptions: {
+                config: path.resolve(__dirname, "postcss.config.js"),
+              },
             },
           },
         ],
       },
       {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
+        test: /\.css$/,
         use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
           {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
+            loader: "css-loader",
           },
         ],
       },
@@ -84,26 +97,25 @@ module.exports = {
   resolve: {
     alias: {
       ...reactDomAlias,
-      "@Components": path.resolve(__dirname, "src/components/"),
-      "@Providers": path.resolve(__dirname, "src/providers/"),
     },
-    extensions: ["*", ".js", ".scss"],
+    extensions: ["*", ".js", ".scss", ".css", ".pcss", ".ttf", ".tsx", ".ts", ".jsx"],
   },
   output: {
-    path: path.resolve(__dirname, "../server/public/dist"),
-    publicPath: "/dist/",
+    path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   devServer: {
-    contentBase: path.join(__dirname, "public/"),
+    contentBase: resolveAppPath("public"),
     historyApiFallback: true,
     port: 3000,
-    publicPath: "http://localhost:3000/dist/",
-    hotOnly: true,
+
+    publicPath: "/",
+    hot: true,
     proxy: [
       {
-        context: ["/auth", "/api"],
-        target: "http://localhost:4000",
+        context: ["/wrr-bbcards-staging/us-central1/https/api/v1"],
+        target: "http://localhost:5001",
       },
     ],
   },

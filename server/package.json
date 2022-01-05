@@ -2,9 +2,10 @@
   "scripts": {
     "start": "node src/app.js",
     "clean": "rm -rf ./public/dist",
+    "generate-secret": "./scripts/generate-secret.js",
     "dev": "yarn run clean && nodemon src/app.js",
     "dev:debug": "nodemon --inspect-brk src/app.js",
-    "console": "node --experimental-repl-await ./src/console.js",
+    "dev:e2e": "NODE_ENV=e2e PORT=8765 nodemon src/app.js",
     "migrate:latest": "knex --knexfile ./knexfile.cjs migrate:latest",
     "migrate:rollback": "knex --knexfile ./knexfile.cjs migrate:rollback",
     "migrate:make": "knex --knexfile ./knexfile.cjs migrate:make",
@@ -12,8 +13,10 @@
     "db:e2e:migrate": "NODE_ENV='e2e' yarn run migrate:latest",
     "test": "jest",
     "ci": "jest --coverage",
-    "generate-secret": "./scripts/generate-secret.js",
-    "dev:e2e": "NODE_ENV=e2e PORT=8765 nodemon src/app.js"
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --ext .js,.ts --fix .",
+    "lint:style": "yarn run prettier . --check --no-editorconfig",
+    "lint:style:fix": "yarn run lint:style --write"
   },
   "license": "UNLICENSED",
   "private": true,

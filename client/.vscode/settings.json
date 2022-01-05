@@ -16,6 +16,6 @@
     "titleBar.inactiveBackground": "#00b3e699",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "window.title": "${activeEditorShort}${separator}consultancy-breakable-toy${separator}${rootName}",
+  "window.title": "Client${separator}Consultancy Breakable Toy",
   "peacock.color": "#00b3e6"
 }
