@@ -1,4 +1,5 @@
-module.exports = function (api) {
+/* eslint-disable global-require */
+module.exports = function getConfig(api) {
   const isDevelopmentEnv = api.env("development");
   const isProductionEnv = api.env("production");
   const isTestEnv = api.env("test") || api.env("e2e");

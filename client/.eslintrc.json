@@ -1,12 +1,12 @@
 {
   "extends": [
     "airbnb",
-    "prettier",
     "plugin:react-hooks/recommended",
     // "plugin:@typescript-eslint/eslint-recommended",
     // "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier"
   ],
   "plugins": ["react", "prettier"],
   // "plugins": ["react", "prettier", "@typescript-eslint"],
@@ -45,8 +45,8 @@
         }
       }
     ],
-    "import/extensions": ["error", "never"],
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "import/extensions": ["error", "never"]
+    // "@typescript-eslint/no-unused-vars": ["error"]
   },
   "env": {
     "browser": true
@@ -58,5 +58,6 @@
       "jsx": true
     }
   },
-  "parser": "@typescript-eslint/parser"
+  // "parser": "@typescript-eslint/parser"
+  "parser": "@babel/eslint-parser"
 }

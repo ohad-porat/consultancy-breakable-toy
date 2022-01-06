@@ -89,5 +89,6 @@
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "editor.scrollBeyondLastLine": false,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.words": ["corejs"]
 }
