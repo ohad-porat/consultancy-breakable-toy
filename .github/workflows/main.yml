@@ -1,0 +1,74 @@
+# name: Lint and test
+# "on":
+#   pull_request:
+#   push:
+#     branches:
+#       - staging
+#       - main
+# env:
+#   PGPASSWORD: postgres
+#   POSTGRES_DB: ADD_DB_NAME_HERE
+#   PGHOST: 127.0.0.1
+#   PGUSER: postgres
+
+# jobs:
+#   lint_and_test:
+#     runs-on: ubuntu-latest
+#     env:
+#       DATABASE_URL: ADD_DB_URL_HERE
+#     timeout-minutes: 15
+#     services:
+#       postgres:
+#         image: postgis/postgis:12-3.1
+#         env:
+#           POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
+#           POSTGRES_DB: ${{ env.POSTGRES_DB }}
+#         ports:
+#           - 5432:5432
+#         # Set health checks to wait until postgres has started
+#         options: >-
+#           --health-cmd pg_isready
+#           --health-interval 10s
+#           --health-timeout 5s
+#           --health-retries 5
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Read Node.js version to install from `.nvmrc`
+#         run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+#         id: nvm
+#       - name: Install required Node.js version
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: "${{ steps.nvm.outputs.NVMRC }}"
+
+#       - name: Install dependencies
+#         run: yarn install --frozen-lockfile
+#       - name: Install dependencies (fns dir)
+#         working-directory: functions
+#         run: yarn install --frozen-lockfile
+
+#       - name: Check server style
+#         working-directory: functions
+#         run: yarn run lint:style
+#       - name: Check client style
+#         working-directory: client
+#         run: yarn run lint:style
+#       - name: Lint server
+#         working-directory: functions
+#         run: yarn run lint
+#       - name: Lint client
+#         working-directory: client
+#         run: yarn run lint
+
+#       - name: Run client test suite
+#         working-directory: client
+#         run: yarn run test
+
+#       - name: Migrate Database
+#         run: NODE_ENV=test yarn run test:migrate:latest
+#         working-directory: functions
+#       - name: Run server test suite
+#         working-directory: functions
+#         run: yarn run test
