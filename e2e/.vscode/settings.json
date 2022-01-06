@@ -16,5 +16,77 @@
     "titleBar.inactiveForeground": "#15202b99"
   },
   "peacock.color": "#f9e64f",
-  "window.title": "e2e${separator}Consultancy Breakable Toy"
+  "window.title": "e2e${separator}Consultancy Breakable Toy",
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.useESLintClass": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "prettier.requireConfig": true,
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "cSpell.allowCompoundWords": true,
+  "cSpell.userWords": ["pcss", "postgres", "virtuals"],
+  "cSpell.ignorePaths": [
+    "**/package-lock.json",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/objects/**",
+    ".vscode",
+    ".vscode-insiders",
+    "yarn.lock",
+    "package.json",
+    "Gemfile",
+    "Gemfile.lock"
+  ],
+  "relativePath.ignore": ["**/node_modules/**", "**/*.dll", "**/obj/**", "**/objd/**", "**/*.cls"],
+  "files.exclude": {
+    "/.git": true,
+    "/.DS_Store": true,
+    "node_modules/**": true,
+    ".webpack/**": true,
+    "client/node_modules/**": true,
+    "server/node_modules/**": true,
+    "/server/public/css/vendor": true,
+    "/client/yarn.lock": true,
+    "/client/dist/bundle.js": true,
+    "/server/yarn.lock": true,
+    "yarn.lock": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true,
+    "lib": true
+  },
+  "files.watcherExclude": {
+    "node_modules/**": true,
+    "client/node_modules/**": true,
+    "server/node_modules/**": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "markdownlint.run": "onSave",
+  "search.exclude": {
+    "*.chunk.js": true,
+    "**/*.chunk.js": true,
+    "/node_modules/**": true,
+    "lib/**": true
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.scrollBeyondLastLine": false,
+  "editor.formatOnSave": true,
+  "cSpell.words": ["corejs"]
 }

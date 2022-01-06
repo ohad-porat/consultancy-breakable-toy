@@ -40,7 +40,6 @@
   },
   "cSpell.allowCompoundWords": true,
   "cSpell.userWords": ["pcss", "postgres", "virtuals"],
-  // "workbench.sideBar.location": "left",
   "cSpell.ignorePaths": [
     "**/package-lock.json",
     "**/node_modules/**",
