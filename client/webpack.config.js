@@ -114,8 +114,8 @@ module.exports = {
     hot: true,
     proxy: [
       {
-        context: ["/wrr-bbcards-staging/us-central1/https/api/v1"],
-        target: "http://localhost:5001",
+        context: ["/api/v1"],
+        target: "http://localhost:4000",
       },
     ],
   },
