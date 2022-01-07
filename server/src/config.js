@@ -1,6 +1,6 @@
 import "./boot.js";
-import getNodeEnv from "./config/getNodeEnv.js";
 import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
+import getNodeEnv from "./config/getNodeEnv.js";
 
 export default {
   nodeEnv: getNodeEnv(),

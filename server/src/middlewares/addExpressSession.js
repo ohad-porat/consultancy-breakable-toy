@@ -1,4 +1,5 @@
 import session from "cookie-session";
+
 import configuration from "../config.js";
 
 const addExpressSession = (app) => {

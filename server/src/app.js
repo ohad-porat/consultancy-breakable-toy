@@ -1,8 +1,10 @@
-import express from "express";
 import path from "path";
-import logger from "morgan";
-import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
+
+import bodyParser from "body-parser";
+import express from "express";
+import logger from "morgan";
+
 import "./boot.js";
 import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";

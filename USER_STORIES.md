@@ -13,7 +13,7 @@ so that I know what my squid battalion looks like
 Acceptance Criteria
 
 - Visiting `/squids` displays all your squids
-- Squids have the following attributes: name, species, special power (an enum of "ink", "camouflage", "bioluminescence"), number of victories (default: 0). Name, species, and number of victories cannot be null.
+- Squids have the following attributes: name, species, special power ("ink", "camouflage", "bioluminescence", etc.), number of victories (default: 0). Name, species, and number of victories cannot be null.
 - Squids are sorted by creation date, most recent first
 
 Implementation Details

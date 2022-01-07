@@ -1,5 +1,5 @@
-import { Factory } from "rosie";
 import Faker from "faker";
+import { Factory } from "rosie";
 
 import { MyModel } from "../../src/models/index.js";
 

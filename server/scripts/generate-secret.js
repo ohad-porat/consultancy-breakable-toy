@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import uuid from "uuid";
-
-const { v4 } = uuid;
+import { v4 } from "uuid";
 
 console.log(v4());
