@@ -6,9 +6,9 @@ import express from "express";
 import logger from "morgan";
 
 import "./boot.js";
-import configuration from "./config.js";
-import addMiddlewares from "./middlewares/addMiddlewares.js";
-import rootRouter from "./routes/rootRouter.js";
+import { config } from "./config.js";
+import { addMiddlewares } from "./middlewares/addMiddlewares.js";
+import { rootRouter } from "./routes/rootRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -27,7 +27,8 @@ app.use(
 app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
-app.listen(configuration.web.port, configuration.web.host, () => {
+app.listen(config.web.port, config.web.host, () => {
+  // eslint-disable-next-line no-console
   console.log("Server is listening...");
 });
-export default app;
+export { app };

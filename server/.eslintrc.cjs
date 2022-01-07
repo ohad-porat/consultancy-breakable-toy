@@ -54,5 +54,6 @@ module.exports = {
         },
       },
     ],
+    "import/no-default-export": "error",
   },
 };

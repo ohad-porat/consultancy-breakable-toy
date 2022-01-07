@@ -1,7 +1,7 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import config from "../config.js";
+import { config } from "../config.js";
 
 const getClientIndexPath = () => {
   const currentPath = dirname(fileURLToPath(import.meta.url));
@@ -13,4 +13,4 @@ const getClientIndexPath = () => {
   return indexPath;
 };
 
-export default getClientIndexPath;
+export { getClientIndexPath };

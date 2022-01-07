@@ -60,4 +60,4 @@ class Factory {
   }
 }
 
-export default Factory;
+export { Factory };

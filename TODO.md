@@ -4,6 +4,7 @@
 - Verify that factories are working correctly (Kerrin encountered empty squids 😱)
 - Make "differences from curriculum Engage"
 - Add GitHub CI
+- Create root-level eslint config and remove root=true for subdir-level configs
 
 ## Differences from Curriculum Engage draft
 

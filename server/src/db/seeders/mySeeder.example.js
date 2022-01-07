@@ -1,5 +1,6 @@
-import Factory from "../../../test/factories/Factory.js";
-import "../../../test/factories.js";
+// eslint-disable-next-line no-unused-vars
+import { Factory } from "../../../test/factories/Factory.js";
+import "../../../test/factories/factories";
 
 class MySeeder {
   static async seed() {
@@ -8,4 +9,4 @@ class MySeeder {
   }
 }
 
-export default MySeeder;
+export { MySeeder };

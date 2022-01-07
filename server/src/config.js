@@ -1,8 +1,8 @@
 import "./boot.js";
 import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
-import getNodeEnv from "./config/getNodeEnv.js";
+import { getNodeEnv } from "./config/getNodeEnv.js";
 
-export default {
+export const config = {
   nodeEnv: getNodeEnv(),
   session: { secret: process.env.SESSION_SECRET },
   databaseUrl: getDatabaseUrl(getNodeEnv()),

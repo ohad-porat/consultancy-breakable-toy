@@ -1,16 +1,14 @@
 import session from "cookie-session";
 
-import configuration from "../config.js";
+import { config } from "../config.js";
 
-const addExpressSession = (app) => {
+export const addExpressSession = (app) => {
   app.use(
     session({
       name: "consultancy-breakable-toy-session",
-      keys: [configuration.session.secret],
+      keys: [config.session.secret],
       resave: true,
-      maxAge: configuration.maxAge,
+      maxAge: config.maxAge,
     })
   );
 };
-
-export default addExpressSession;

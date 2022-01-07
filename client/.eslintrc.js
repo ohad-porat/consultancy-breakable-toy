@@ -1,21 +1,21 @@
-{
-  "extends": [
+module.exports = {
+  extends: [
     "airbnb",
     "plugin:react-hooks/recommended",
     // "plugin:@typescript-eslint/eslint-recommended",
     // "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "prettier"
+    "prettier",
   ],
-  "plugins": ["react", "prettier"],
+  plugins: ["react", "prettier"],
   // "plugins": ["react", "prettier", "@typescript-eslint"],
-  "rules": {
+  rules: {
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": ["jsx", "tsx"]
-      }
+        extensions: ["jsx", "tsx"],
+      },
     ],
     "prettier/prettier": "error",
     "no-underscore-dangle": "off",
@@ -29,35 +29,36 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
-        "pathGroups": [
+        groups: ["builtin", "external", "internal"],
+        pathGroups: [
           {
-            "pattern": "react",
-            "group": "external",
-            "position": "before"
-          }
+            pattern: "react",
+            group: "external",
+            position: "before",
+          },
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
+        pathGroupsExcludedImportTypes: ["react"],
         "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+      },
     ],
-    "import/extensions": ["error", "never"]
+    "import/extensions": ["error", "never"],
+    "import/no-default-export": "error",
     // "@typescript-eslint/no-unused-vars": ["error"]
   },
-  "env": {
-    "browser": true
+  env: {
+    browser: true,
   },
-  "settings": {},
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "jsx": true
-    }
+  settings: {},
+  parserOptions: {
+    ecmaVersion: 2020,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   // "parser": "@typescript-eslint/parser"
-  "parser": "@babel/eslint-parser"
-}
+  parser: "@babel/eslint-parser",
+};
