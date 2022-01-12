@@ -1,3 +1,4 @@
 import errorHandler from "errorhandler";
 
-export { errorHandler };
+// eslint-disable-next-line import/no-default-export
+export default errorHandler;
