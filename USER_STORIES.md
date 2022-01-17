@@ -13,15 +13,23 @@ so that I know what my squid battalion looks like
 Acceptance Criteria
 
 - Visiting `/squids` displays all your squids
-- Squids have the following attributes: name, species, special power ("ink", "camouflage", "bioluminescence", etc.), number of victories (default: 0). Name, species, and number of victories cannot be null.
+- Squids have the following attributes: name, species, special power ("ink", "camouflage", "bioluminescence", etc.), experience points (default: 0). Name, species, and experience points cannot be null.
 - Squids are sorted by creation date, most recent first
 
 Implementation Details
 
 - Create a seeder to populate your app with some fake data in development. Use the `rosie` npm package to create a factory that your seeder will use.
 - Use React Query to retrieve your squids
-- Your page should be nicely styled using margins, background color, and columns
+- Your final code should make HTTP requests using the provided ApiClient class, which wraps `axios`, but if you're more comfortable with `fetch` or another library, consider using that as you get comfortable with React Query and then swapping it out once the functionality is working.
+- Your page should be nicely styled using margins, background color, and columns. Use Tailwind classes whenever possible, organized in a `.pcss` file specific to your component, using (BEM)[https://css-tricks.com/bem-101/] style.
 - No need to use a react table package
+- Be sure to use the provided `nextWrapper.js` to wrap your routes (because Express 4 handles errors badly):
+
+```js
+router.get("/my-route-path", nextWrapper((req, res) => { 
+// ...
+}
+```
 
 ### Paginate Those Squids!
 
@@ -40,6 +48,7 @@ Implementation Details
 
 - Squids should be paginated _on the server side_, not the client side
 - React Query has some good documentation on how to provide a fast user experience with paginated data
+- Check out Objection's `resultsSize()`
 
 ### Moar Squids
 
@@ -52,13 +61,14 @@ so that I can build an army that will take over the world
 Acceptance Criteria
 
 - I can add new squids via a form on the index page
-- I can click a refresh button to retrieve the updated data after submitting my form
+- I can click a refresh button to re-retrieve the updated data after submitting my form
 - Special powers are a set of checkboxes
 - If I do not provide all required data, I see an informative error message
 
 Implementation Details
 
 - Use React Hook Form, including validating for required fields
+- 
 
 ### Fewoar Squids
 
@@ -79,6 +89,34 @@ Implementation Details
 
 - Allow "soft deletion" by creating a `deletedAt` field on your squid table
 - Create a modifier on the Squid model that lets you easily filter out squids with non-null `deletedAt` values
+
+### Train Your Squids!
+
+```no-format
+As a user
+I want to be able to battle my squids against one another
+so that I can train them for the Octogon
+```
+
+Acceptance Criteria
+
+- I can navigate to `/battles` manually or via a link on the index page
+- The Battles index page shows a form with two dropdowns for selecting from amongst my squids
+- My squids are ordered from fewest experience points to most within the dropdowns 
+- When I train two squids, their experience points (squids have experience points now) and number of victories are updated appropriately 
+- I cannot train the same squid against itself -- if I try, I'm shown an error message and the training does not proceed
+
+Implementation Details
+
+- Just in case your high school math curriculum stopped short of Squid Math, here's how to calculate the experience gained by a winning squid:
+
+> If the winning squid had more experience (XP): winning squid XP - losing squid XP
+> If the winning squid had less XP: 2 * (losing squid XP - winning squid XP)
+> Take that number and multiply it by the distance of the current day from the most recent solstice (winter or summer). You may approximate the solstices as always occurring on Dec 21/Jun 21.
+
+- Please use the `date-fns` library for anything date-related
+- Definitely write a Jest unit test for your method!
+- The losing squid doesn't lose any XP
 
 ## Intermediate
 
