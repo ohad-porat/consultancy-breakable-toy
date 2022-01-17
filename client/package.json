@@ -10,7 +10,7 @@
   },
   "license": "UNLICENSED",
   "private": true,
-  "name": "consulting-breakable-toy-client",
+  "name": "consultancy-breakable-toy-client",
   "version": "0.0.1",
   "engines": {
     "node": "^16.13"
@@ -41,6 +41,8 @@
     "@babel/eslint-parser": "^7.16.5",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-proposal-private-methods": "^7.16.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-destructuring": "^7.6.0",
     "@babel/plugin-transform-regenerator": "^7.4.5",

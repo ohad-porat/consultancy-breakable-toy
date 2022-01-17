@@ -10,6 +10,13 @@ const ObjectionModel = require("objection").Model;
  * @class Model
  */
 class Model extends ObjectionModel {
+  constructor(attributes = {}) {
+    super();
+    if (attributes !== {}) {
+      this.$set(attributes);
+    }
+  }
+
   $beforeInsert() {
     this.createdAt = new Date().toISOString();
     this.updatedAt = new Date().toISOString();

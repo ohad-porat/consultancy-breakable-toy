@@ -61,6 +61,8 @@ module.exports = function getConfig(api) {
           async: false,
         },
       ],
+      [require("@babel/plugin-proposal-private-property-in-object").default, { loose: true }],
+      [require("@babel/plugin-proposal-private-methods").default, { loose: true }],
     ].filter(Boolean),
   };
 };

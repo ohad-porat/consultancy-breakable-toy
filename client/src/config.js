@@ -1,4 +1,7 @@
-const config = {
+export const config = {
+  apiClient: {
+    baseUri: "/api/v1",
+  },
   env: process.env.NODE_ENV || "development",
   validation: {
     email: {
@@ -8,5 +11,3 @@ const config = {
     },
   },
 };
-
-export default config;

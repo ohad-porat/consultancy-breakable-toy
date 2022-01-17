@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import RedBox from "redbox-react";
 
 import App from "./components/App";
-import config from "./config";
+import { config } from "./config";
 
 document.addEventListener("DOMContentLoaded", () => {
   const reactElement = document.getElementById("app");

@@ -29,6 +29,6 @@ addMiddlewares(app);
 app.use(rootRouter);
 app.listen(config.web.port, config.web.host, () => {
   // eslint-disable-next-line no-console
-  console.log("Server is listening...");
+  console.log("Server is listening on port " + config.web.port);
 });
 export { app };

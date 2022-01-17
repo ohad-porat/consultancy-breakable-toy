@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const TopBar = () => (
+export const TopBar = () => (
   <div className="top-bar">
     <div className="top-bar-left">
       <ul className="menu">
@@ -14,5 +14,3 @@ const TopBar = () => (
     </div>
   </div>
 );
-
-export default TopBar;
