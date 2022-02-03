@@ -27,6 +27,20 @@ class Factory {
     return this.TargetModel.query().insertGraphAndFetch(instance, insertGraphOptions);
   }
 
+  /**=
+   * Create many instances
+   *
+   * @param {Number} number - number of things to make
+   * @return {Array} instances - persisted objects
+   * @memberof Factory
+   */
+  async createMany(number) {
+    const instances = [...Array(number)].map(async () => this.build());
+    const resolvedInstances = await Promise.all(instances);
+
+    return this.TargetModel.query().insertGraphAndFetch(resolvedInstances, insertGraphOptions);
+  }
+
   /**
    * Create many instances
    *
@@ -35,7 +49,7 @@ class Factory {
    * @return {Array} instances - persisted objects
    * @memberof Factory
    */
-  async createMany(overrides, options) {
+  async createManySpecific(overrides, options) {
     const instances = overrides.map(async (override) => this.build(override, options));
     const resolvedInstances = await Promise.all(instances);
 

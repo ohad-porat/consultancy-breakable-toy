@@ -1,4 +1,5 @@
 import { connection } from "../../boot.js";
+import "../../../test/factories/factories.js";
 
 export class Seeder {
   static async seed() {
