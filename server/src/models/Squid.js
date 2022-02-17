@@ -12,7 +12,10 @@ class Squid extends Model {
       properties: {
         name: { type: "string" },
         species: { type: "string" },
-        specialPower: { type: "string" },
+        specialPower: {
+          type: "string",
+          enum: ["ink", "camouflage", "bioluminescence", "change color"],
+        },
         experiencePoints: { type: ["integer", "string"], default: 0 },
       },
     }
