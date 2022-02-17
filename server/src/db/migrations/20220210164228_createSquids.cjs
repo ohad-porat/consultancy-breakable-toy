@@ -12,6 +12,8 @@ exports.up = async (knex) => {
     t.string("species").notNullable()
     t.string("specialPower")
     t.integer("experiencePoints").defaultTo(0).notNullable()
+    t.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
+    t.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
   })
 }
 

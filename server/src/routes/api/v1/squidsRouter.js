@@ -8,11 +8,7 @@ export const squidsRouter = new express.Router()
 squidsRouter.get(
   "/",
   nextWrapper(async (req, res) => {
-    const squids = await Squid.query()
-    // squids.sort((a, b) => {
-    //   console.log(a)
-    //   console.log(b)
-    // })
+    const squids = await Squid.query().orderBy("createdAt", "desc")
     return res.status(200).json({ squids })
   })
 )

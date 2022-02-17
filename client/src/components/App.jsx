@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/order
 import { hot } from "react-hot-loader/root"
 // eslint-disable-next-line import/order
-import React, { useEffect } from "react"
+import React from "react"
 import { QueryClientProvider, QueryClient } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
+import { SquidList } from "./layout/SquidList"
 import { TopBar } from "./layout/TopBar"
-import SquidList from "./layout/SquidList"
 
 import "../style/main.pcss"
 // import { useEffect } from "react"
