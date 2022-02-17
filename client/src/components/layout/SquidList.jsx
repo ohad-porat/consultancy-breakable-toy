@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 
-import SquidTile from "./squidTile"
+import { SquidTile } from "./SquidTile"
 
-const squidList = () => {
+export const SquidList = () => {
   const [squids, setSquids] = useState([])
 
   const fetchSquids = async () => {
@@ -15,7 +15,7 @@ const squidList = () => {
       }
       const responseBody = await response.json()
       setSquids(responseBody.squids)
-    } catch (err) {
+    } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
@@ -24,9 +24,7 @@ const squidList = () => {
     fetchSquids()
   }, [])
 
-  const squidTiles = squids.map((squid) => {
-    return <SquidTile key={squid.id} squid={squid} />
-  })
+  const squidTiles = squids.map((squid) => <SquidTile key={squid.id} squid={squid} />)
 
   return (
     <>
@@ -35,5 +33,3 @@ const squidList = () => {
     </>
   )
 }
-
-export default squidList
