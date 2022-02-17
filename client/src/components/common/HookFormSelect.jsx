@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
-import PropTypes from "prop-types";
-import { Controller } from "react-hook-form";
-import Select from "react-select";
+import PropTypes from "prop-types"
+import { Controller } from "react-hook-form"
+import Select from "react-select"
 
 export const HookFormSelect = ({
   name,
@@ -22,9 +22,9 @@ export const HookFormSelect = ({
     render={({ onChange: hookOnChange, value }) => (
       <Select
         onChange={(val) => {
-          hookOnChange(val.value);
+          hookOnChange(val.value)
           if (onChange) {
-            onChange(val.value);
+            onChange(val.value)
           }
         }}
         className="select"
@@ -37,7 +37,7 @@ export const HookFormSelect = ({
       />
     )}
   />
-);
+)
 
 HookFormSelect.defaultProps = {
   id: undefined,
@@ -46,7 +46,7 @@ HookFormSelect.defaultProps = {
   disabled: false,
   options: [],
   onChange: undefined,
-};
+}
 
 HookFormSelect.propTypes = {
   name: PropTypes.string.isRequired,
@@ -63,4 +63,4 @@ HookFormSelect.propTypes = {
       value: PropTypes.string,
     })
   ),
-};
+}

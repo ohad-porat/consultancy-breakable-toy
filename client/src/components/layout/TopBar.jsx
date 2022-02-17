@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export const TopBar = () => (
   <div className="top-bar">
@@ -13,4 +13,4 @@ export const TopBar = () => (
       </ul>
     </div>
   </div>
-);
+)

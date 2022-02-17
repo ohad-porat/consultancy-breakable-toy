@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const ObjectionModel = require("objection").Model;
+const ObjectionModel = require("objection").Model
 
 /**
  * Abstract model for Transporter ORM
@@ -11,31 +11,31 @@ const ObjectionModel = require("objection").Model;
  */
 class Model extends ObjectionModel {
   constructor(attributes = {}) {
-    super();
+    super()
     if (attributes !== {}) {
-      this.$set(attributes);
+      this.$set(attributes)
     }
   }
 
   $beforeInsert() {
-    this.createdAt = new Date().toISOString();
-    this.updatedAt = new Date().toISOString();
+    this.createdAt = new Date().toISOString()
+    this.updatedAt = new Date().toISOString()
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updatedAt = new Date().toISOString()
   }
 
   // https://vincit.github.io/objection.js/api/model/static-properties.html#static-uselimitinfirst
   static get useLimitInFirst() {
-    return true;
+    return true
   }
 
   // Allows relations to be specified as model name rather than path/Model class
   // https://vincit.github.io/objection.js/api/model/static-properties.html#static-modelpaths
   static get modelPaths() {
-    return [__dirname];
+    return [__dirname]
   }
 }
 
-module.exports = Model;
+module.exports = Model

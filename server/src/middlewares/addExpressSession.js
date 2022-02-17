@@ -1,6 +1,6 @@
-import session from "cookie-session";
+import session from "cookie-session"
 
-import { config } from "../config.js";
+import { config } from "../config.js"
 
 export const addExpressSession = (app) => {
   app.use(
@@ -10,5 +10,5 @@ export const addExpressSession = (app) => {
       resave: true,
       maxAge: config.maxAge,
     })
-  );
-};
+  )
+}

@@ -5,8 +5,8 @@
  */
 export const nextWrapper = (routeHandler) => async (req, res, next) => {
   try {
-    return await routeHandler(req, res);
+    return await routeHandler(req, res)
   } catch (error) {
-    return next(error);
+    return next(error)
   }
-};
+}

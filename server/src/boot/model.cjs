@@ -1,10 +1,10 @@
-const knex = require("knex");
-const objection = require("objection");
+const knex = require("knex")
+const objection = require("objection")
 
-const knexConfig = require("../../knexfile.cjs");
+const knexConfig = require("../../knexfile.cjs")
 
-const knexConnection = knex(knexConfig);
+const knexConnection = knex(knexConfig)
 
-objection.Model.knex(knexConnection);
+objection.Model.knex(knexConnection)
 
-module.exports = knexConnection;
+module.exports = knexConnection

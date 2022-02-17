@@ -3,6 +3,7 @@ import objection from "objection"
 const { DataError, NotFoundError, NotNullViolationError, ValidationError, UniqueViolationError } =
   objection
 
+// eslint-disable-next-line no-unused-vars
 export const handleErrors = (error, req, res, next) => {
   // eslint-disable-next-line no-console
   console.error(error)

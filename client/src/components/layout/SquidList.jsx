@@ -25,10 +25,7 @@ const squidList = () => {
   }, [])
 
   const squidTiles = squids.map((squid) => {
-    // debugger
-    return (
-      <SquidTile key={squid.id} squid={squid} />
-    )
+    return <SquidTile key={squid.id} squid={squid} />
   })
 
   return (

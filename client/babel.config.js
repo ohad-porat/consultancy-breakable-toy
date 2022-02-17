@@ -1,8 +1,8 @@
 /* eslint-disable global-require */
 module.exports = function getConfig(api) {
-  const isDevelopmentEnv = api.env("development");
-  const isProductionEnv = api.env("production");
-  const isTestEnv = api.env("test") || api.env("e2e");
+  const isDevelopmentEnv = api.env("development")
+  const isProductionEnv = api.env("production")
+  const isTestEnv = api.env("test") || api.env("e2e")
 
   return {
     presets: [
@@ -64,5 +64,5 @@ module.exports = function getConfig(api) {
       [require("@babel/plugin-proposal-private-property-in-object").default, { loose: true }],
       [require("@babel/plugin-proposal-private-methods").default, { loose: true }],
     ].filter(Boolean),
-  };
-};
+  }
+}
