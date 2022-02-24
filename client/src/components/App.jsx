@@ -6,8 +6,8 @@ import { QueryClientProvider, QueryClient } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import { SquidList } from "./layout/SquidList"
 import { TopBar } from "./layout/TopBar"
+import { SquidList } from "./squids/SquidList"
 
 import "../style/main.pcss"
 // import { useEffect } from "react"

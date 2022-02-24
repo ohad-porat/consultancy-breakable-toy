@@ -6,7 +6,7 @@ export const SquidTile = ({ squid }) => {
   return (
     <div>
       <p>---</p>
-      <h3>Name:{squid.name}</h3>
+      <h3>Name: {squid.name}</h3>
       <h3>Species: {squid.species}</h3>
       {specialPowerElement}
       <p>Experience Points: {squid.experiencePoints}</p>

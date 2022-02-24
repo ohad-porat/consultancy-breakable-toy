@@ -8,8 +8,10 @@ export class SquidSeeder {
       const squidFactory = new Factory(Squid)
 
       await squidFactory.createMany(15)
+      // eslint-disable-next-line no-console
       console.log("Squids successfully seeded")
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(`Error in seeder: ${error}`)
     }
   }

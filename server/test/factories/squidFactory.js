@@ -3,7 +3,7 @@ import { Factory } from "rosie"
 import { Squid } from "../../src/models/index.js"
 
 const chooseRandomSpecies = () => {
-  const species = [
+  const speciesList = [
     "Colossal Squid",
     "Humboldt Squid",
     "European Squid",
@@ -14,21 +14,21 @@ const chooseRandomSpecies = () => {
     "Sepia Latimanus",
   ]
 
-  return species[Math.floor(Math.random() * species.length)]
+  return speciesList[Math.floor(Math.random() * speciesList.length)]
 }
 
 const chooseRandomSpecialPower = () => {
-  const specialPowers = ["ink", "camouflage", "bioluminescence", "change color", null]
+  const specialPowersList = ["ink", "camouflage", "bioluminescence", "change color"]
 
-  return specialPowers[Math.floor(Math.random() * specialPowers.length)]
+  return specialPowersList[Math.floor(Math.random() * specialPowersList.length)]
 }
 
 const getRandomNumber = () => Math.floor(Math.random() * 158).toString()
 
-Factory.define("squid", Squid)
+Factory.define("Squid", Squid)
   .sequence("name", (i) => `Bob ${i}`)
   .attr("species", chooseRandomSpecies)
-  .attr("specialPowers", chooseRandomSpecialPower)
+  .attr("specialPower", chooseRandomSpecialPower)
   .attr("experiencePoints", getRandomNumber)
 
 export { Factory }
