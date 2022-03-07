@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import { TopBar } from "./layout/TopBar"
-import { SquidList } from "./squids/SquidList"
+import { SquidList } from "./squidIndex/SquidList"
 
 import "../style/main.pcss"
 // import { useEffect } from "react"
@@ -31,7 +31,7 @@ const App = () => {
         <TopBar />
         <Switch>
           <Route exact path="/">
-            <h2>Hello from react</h2>
+            <h2>Hello from Squidward</h2>
           </Route>
           <Route exact path="/squids" component={SquidList} />
         </Switch>

@@ -3,6 +3,8 @@ import React from "react"
 import { useSquidList } from "../hooks/useSquidList"
 import { SquidTile } from "./SquidTile"
 
+import "../../style/index.pcss"
+
 export const SquidList = () => {
   const squidListQuery = useSquidList()
   const squids = squidListQuery.data || []
@@ -17,9 +19,9 @@ export const SquidList = () => {
   }
 
   return (
-    <>
-      <h2>Squid List</h2>
+    <div className="page-body">
+      <h2 className="index-header__text">Squid List</h2>
       {squidListQueryOutput}
-    </>
+    </div>
   )
 }
