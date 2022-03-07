@@ -13,6 +13,11 @@ export const TopBar = () => (
             Home
           </Link>
         </li>
+        <li>
+          <Link to="/squids" className="menu-link">
+            All Squids
+          </Link>
+        </li>
       </ul>
     </div>
   </div>
