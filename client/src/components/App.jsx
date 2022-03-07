@@ -31,7 +31,7 @@ const App = () => {
         <TopBar />
         <Switch>
           <Route exact path="/">
-            <h2>Hello from react</h2>
+            <h2>Hello from Squidward</h2>
           </Route>
           <Route exact path="/squids" component={SquidList} />
         </Switch>
