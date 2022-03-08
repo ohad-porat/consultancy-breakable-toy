@@ -15,7 +15,18 @@ export const SquidList = () => {
   } else if (squidListQuery.isError) {
     squidListQueryOutput = squidListQuery.error.message
   } else {
-    squidListQueryOutput = squids.map((squid) => <SquidTile key={squid.id} squid={squid} />)
+    squidListQueryOutput = squids.map((squid, index) => {
+      let hrElement = ""
+      if (index > 0) {
+        hrElement = <hr />
+      }
+      return (
+        <div key={squid.id}>
+          {hrElement}
+          <SquidTile squid={squid} />
+        </div>
+      )
+    })
   }
 
   return (

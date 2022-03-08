@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import { TopBar } from "./layout/TopBar"
-import { SquidList } from "./squidIndex/SquidList"
+import { SquidList } from "./squids/SquidList"
 
 import "../style/main.pcss"
 // import { useEffect } from "react"

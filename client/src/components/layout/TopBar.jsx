@@ -7,7 +7,11 @@ export const TopBar = () => (
   <div className="top-bar">
     <div className="top-bar-left">
       <ul className="menu">
-        <li className="menu-text">Da Squids App</li>
+        <li>
+          <Link to="/" className="menu-link">
+            Da Squids App
+          </Link>
+        </li>
         <li>
           <Link to="/" className="menu-link">
             Home
