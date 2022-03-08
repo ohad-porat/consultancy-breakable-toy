@@ -5,12 +5,14 @@ export const SquidTile = ({ squid }) => {
   const hrLineElement = squid.id === "1" ? "" : <hr />
 
   return (
-    <div className="squid-tile">
+    <>
       {hrLineElement}
-      <h3 className="squid-tile__header">Name: {squid.name}</h3>
-      <h3>Species: {squid.species}</h3>
-      {specialPowerElement}
-      <p>Experience Points: {squid.experiencePoints}</p>
-    </div>
+      <div className="squid-tile">
+        <h3 className="squid-tile__header">Name: {squid.name}</h3>
+        <h3>Species: {squid.species}</h3>
+        {specialPowerElement}
+        <p>Experience Points: {squid.experiencePoints}</p>
+      </div>
+    </>
   )
 }
