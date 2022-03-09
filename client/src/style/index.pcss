@@ -9,3 +9,23 @@
 .squid-tile {
   @apply my-3 text-lg;
 }
+
+.pagination-buttons {
+  @apply text-center text-xl mt-10;
+}
+
+.scroll-button {
+  @apply text-cyan-600 hover:text-cyan-500 transition duration-200;
+}
+
+.scroll-button:disabled {
+  @apply text-slate-300 cursor-not-allowed;
+}
+
+.page-number {
+  @apply px-3 hover:text-cyan-500 transition duration-200;
+}
+
+.current-page-number {
+  @apply font-medium px-3 shadow-lg rounded-md text-zinc-200 bg-cyan-700;
+}
