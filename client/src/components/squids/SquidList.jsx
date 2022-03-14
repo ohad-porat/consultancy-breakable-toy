@@ -67,8 +67,8 @@ export const SquidList = (props) => {
   }
 
   return (
-    <div className="page-body">
-      <h2 className="index-header__text">Squid List</h2>
+    <div className="squids-list">
+      <h2 className="squids-list__header">Squid List</h2>
       {squidListQueryOutput}
       <div className="pagination__buttons">
         <Link to="/squids?page=1" className={`pagination__button-scroll ${disableForwardAndLast}`}>
