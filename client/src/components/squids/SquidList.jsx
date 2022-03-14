@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
+
+import { Link } from "react-router-dom"
 
 import { useSquidList } from "../hooks/useSquidList"
 import { SquidTile } from "./SquidTile"
@@ -10,38 +12,42 @@ export const SquidList = (props) => {
     location: { search },
   } = props
 
-  const pageNumberQueryString = parseInt(new URLSearchParams(search).get("page"), 10)
+  const pageOffset = parseInt(new URLSearchParams(search).get("page"), 10) - 1 || 0
 
-  const [pageOffset, setPage] = useState(pageNumberQueryString - 1 || 0)
   const pageSize = 10
   const squidListQuery = useSquidList(pageOffset, pageSize)
   const squids = squidListQuery.data || []
   const lastPage = Math.ceil(squids.total / pageSize)
 
-  let firstPageOffset
-  let lastPageOffset
+  let firstPageLinkNumber
+  let lastPageLinkNumber
   const pageNumberButtons = []
 
   if (pageOffset < 3) {
-    firstPageOffset = 0
-    lastPageOffset = 5
+    firstPageLinkNumber = 0
+    lastPageLinkNumber = 5
   } else if (pageOffset + 3 >= lastPage) {
-    firstPageOffset = lastPage - 5
-    lastPageOffset = lastPage
+    firstPageLinkNumber = lastPage - 5
+    lastPageLinkNumber = lastPage
   } else {
-    firstPageOffset = pageOffset - 2
-    lastPageOffset = pageOffset + 3
+    firstPageLinkNumber = pageOffset - 2
+    lastPageLinkNumber = pageOffset + 3
   }
 
-  for (let i = firstPageOffset; i < lastPageOffset; i += 1) {
-    const pageNumberClass = i === pageOffset ? "current-page-number" : "page-number"
-    const buttonComponent = (
-      <button key={i} type="button" onClick={() => setPage(i)}>
-        <span className={pageNumberClass}>{i + 1}</span>
-      </button>
+  for (let i = firstPageLinkNumber; i < lastPageLinkNumber; i += 1) {
+    const pageNumberClass =
+      i === pageOffset ? "pagination__current-page-number" : "pagination__page-number"
+    const pageNumberComponent = (
+      <Link to={`/squids?page=${i + 1}`} className={pageNumberClass}>
+        {i + 1}
+      </Link>
     )
-    pageNumberButtons.push(buttonComponent)
+    pageNumberButtons.push(pageNumberComponent)
   }
+
+  const disableForwardAndLast = pageOffset === 0 ? "pagination__button-scroll__disabled" : ""
+  const disablePreviousAndFirst =
+    pageOffset === lastPage - 1 ? "pagination__button-scroll__disabled" : ""
 
   let squidListQueryOutput = ""
   if (squidListQuery.isLoading) {
@@ -64,40 +70,29 @@ export const SquidList = (props) => {
     <div className="page-body">
       <h2 className="index-header__text">Squid List</h2>
       {squidListQueryOutput}
-      <div className="pagination-buttons">
-        <button
-          type="button"
-          className="scroll-button"
-          onClick={() => setPage(0)}
-          disabled={pageOffset === 0}
-        >
+      <div className="pagination__buttons">
+        <Link to="/squids?page=1" className={`pagination__button-scroll ${disableForwardAndLast}`}>
           <i className="fa-solid fa-angles-left" />
-        </button>
-        <button
-          type="button"
-          className="scroll-button"
-          onClick={() => setPage((current) => current - 1)}
-          disabled={pageOffset === 0}
+        </Link>
+        <Link
+          to={`/squids?page=${pageOffset}`}
+          className={`pagination__button-scroll ${disableForwardAndLast}`}
         >
           <i className="fa-solid fa-angle-left" />
-        </button>
+        </Link>
         {pageNumberButtons}
-        <button
-          type="button"
-          className="scroll-button"
-          onClick={() => setPage((current) => current + 1)}
-          disabled={pageOffset + 1 === lastPage}
+        <Link
+          to={`/squids?page=${pageOffset + 2}`}
+          className={`pagination__button-scroll ${disablePreviousAndFirst}`}
         >
           <i className="fa-solid fa-angle-right" />
-        </button>
-        <button
-          type="button"
-          className="scroll-button"
-          onClick={() => setPage(lastPage - 1)}
-          disabled={pageOffset + 1 === lastPage}
+        </Link>
+        <Link
+          to={`/squids?page=${lastPage}`}
+          className={`pagination__button-scroll ${disablePreviousAndFirst}`}
         >
           <i className="fa-solid fa-angles-right" />
-        </button>
+        </Link>
       </div>
     </div>
   )
