@@ -1,29 +1,29 @@
 // /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs")
+const path = require("path")
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-const dotenv = require("dotenv");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require("webpack");
+const dotenv = require("dotenv")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const webpack = require("webpack")
 
-dotenv.config();
+dotenv.config()
 const isDevelopment = ["development", "test", "e2e"].includes(
   process.env.REACT_ENV || "development"
-);
+)
 
-const initialEntryPoints = isDevelopment ? ["webpack-hot-middleware/client?reload=true"] : [];
+const initialEntryPoints = isDevelopment ? ["webpack-hot-middleware/client?reload=true"] : []
 
-const appDirectory = fs.realpathSync(process.cwd());
+const appDirectory = fs.realpathSync(process.cwd())
 
-const resolveAppPath = (relativePath) => path.resolve(appDirectory, relativePath);
+const resolveAppPath = (relativePath) => path.resolve(appDirectory, relativePath)
 
-let reactDomAlias = {};
+let reactDomAlias = {}
 if (isDevelopment) {
   reactDomAlias = {
     "react-dom": "@hot-loader/react-dom",
-  };
+  }
 }
 module.exports = {
   target: "web",
@@ -120,4 +120,4 @@ module.exports = {
       },
     ],
   },
-};
+}
