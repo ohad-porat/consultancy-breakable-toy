@@ -30,8 +30,8 @@ export const SquidList = () => {
   }
 
   return (
-    <div className="page-body">
-      <h2 className="index-header__text">Squid List</h2>
+    <div className="squids-list">
+      <h2 className="squids-list__header">Squid List</h2>
       {squidListQueryOutput}
     </div>
   )
