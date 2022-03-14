@@ -1,6 +1,7 @@
 import express from "express"
 
 import Squid from "../../../models/Squid.js"
+import { cleanUserInput } from "../../../services/cleanUserInput.js"
 import { nextWrapper } from "../../lib/nextWrapper.js"
 
 export const squidsRouter = new express.Router()
@@ -16,6 +17,16 @@ squidsRouter.get(
       ])
       .page(pageOffset, pageSize)
     return res.status(200).json({ squids })
+  })
+)
+
+squidsRouter.post(
+  "/",
+  nextWrapper(async (req, res) => {
+    const newSquid = cleanUserInput(req.body)
+
+    const squid = await Squid.query().insertAndFetch(newSquid)
+    return res.status(201).json({ squid })
   })
 )
 

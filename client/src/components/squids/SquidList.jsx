@@ -1,10 +1,12 @@
 import React from "react"
 
+import { useQueryClient } from "react-query"
 import { useLocation } from "react-router-dom"
 
 import { useSquidList } from "../hooks/useSquidList"
-import { SquidTile } from "./SquidTile"
 import { Paginator } from "./Paginator"
+import { SquidForm } from "./SquidForm"
+import { SquidTile } from "./SquidTile"
 
 import "../../style/index.pcss"
 
@@ -22,20 +24,25 @@ export const SquidList = () => {
   } else if (squidListQuery.isError) {
     squidListQueryOutput = squidListQuery.error.message
   } else {
-    squidListQueryOutput = squids.results.map((squid, index) => {
-      const hrElement = index > 0 ? <hr /> : ""
-      return (
-        <div key={squid.id}>
-          {hrElement}
-          <SquidTile squid={squid} />
-        </div>
-      )
-    })
+    squidListQueryOutput = squids.results.map((squid) => (
+      <div key={squid.id}>
+        <SquidTile squid={squid} />
+      </div>
+    ))
+  }
+
+  const queryClient = useQueryClient()
+  const useSquidRefetch = () => {
+    queryClient.invalidateQueries("squids")
   }
 
   return (
     <div className="squids-list">
       <h2 className="squids-list__header">Squid List</h2>
+      <button type="button" className="squids-list__refresh-button" onClick={useSquidRefetch}>
+        <i className="fa-solid fa-rotate fa-2x" />
+      </button>
+      <SquidForm />
       {squidListQueryOutput}
       <Paginator pageOffset={pageOffset} lastPage={lastPage} />
     </div>

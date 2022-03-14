@@ -8,9 +8,21 @@
   & .squids-list__tile-header {
     @apply font-medium;
   }
+  & .squids-list__tile {
+    @apply m-auto my-3 w-7/12 text-lg text-center bg-zinc-300 text-cyan-700 p-3 rounded-xl shadow-md;
+    transition: transform 0.3s;
+  }
+
+  & .squids-list__tile:hover {
+    transform: scale(1.05);
+  }
 
   & .squids-list__tile {
     @apply my-3 text-lg;
+  }
+
+  & .squids-list__refresh-button {
+    @apply text-cyan-600 hover:text-cyan-500 transition duration-100 active:text-cyan-400;
   }
 }
 
