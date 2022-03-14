@@ -36,7 +36,7 @@ export const SquidList = (props) => {
 
   for (let i = firstPageLinkNumber; i < lastPageLinkNumber; i += 1) {
     const pageNumberClass =
-      i === pageOffset ? "pagination__current-page-number" : "pagination__page-number"
+      i === pageOffset ? "squids-pagination__current-page-number" : "squids-pagination__page-number"
     const pageNumberComponent = (
       <Link to={`/squids?page=${i + 1}`} className={pageNumberClass}>
         {i + 1}
@@ -45,9 +45,9 @@ export const SquidList = (props) => {
     pageNumberButtons.push(pageNumberComponent)
   }
 
-  const disableForwardAndLast = pageOffset === 0 ? "pagination__button-scroll__disabled" : ""
+  const disableForwardAndLast = pageOffset === 0 ? "squids-pagination__scroll-icon__disabled" : ""
   const disablePreviousAndFirst =
-    pageOffset === lastPage - 1 ? "pagination__button-scroll__disabled" : ""
+    pageOffset === lastPage - 1 ? "squids-pagination__scroll-icon__disabled" : ""
 
   let squidListQueryOutput = ""
   if (squidListQuery.isLoading) {
@@ -70,26 +70,29 @@ export const SquidList = (props) => {
     <div className="squids-list">
       <h2 className="squids-list__header">Squid List</h2>
       {squidListQueryOutput}
-      <div className="pagination__buttons">
-        <Link to="/squids?page=1" className={`pagination__button-scroll ${disableForwardAndLast}`}>
+      <div className="squids-pagination">
+        <Link
+          to="/squids?page=1"
+          className={`squids-pagination__scroll-icon ${disableForwardAndLast}`}
+        >
           <i className="fa-solid fa-angles-left" />
         </Link>
         <Link
           to={`/squids?page=${pageOffset}`}
-          className={`pagination__button-scroll ${disableForwardAndLast}`}
+          className={`squids-pagination__scroll-icon ${disableForwardAndLast}`}
         >
           <i className="fa-solid fa-angle-left" />
         </Link>
         {pageNumberButtons}
         <Link
           to={`/squids?page=${pageOffset + 2}`}
-          className={`pagination__button-scroll ${disablePreviousAndFirst}`}
+          className={`squids-pagination__scroll-icon ${disablePreviousAndFirst}`}
         >
           <i className="fa-solid fa-angle-right" />
         </Link>
         <Link
           to={`/squids?page=${lastPage}`}
-          className={`pagination__button-scroll ${disablePreviousAndFirst}`}
+          className={`squids-pagination__scroll-icon ${disablePreviousAndFirst}`}
         >
           <i className="fa-solid fa-angles-right" />
         </Link>
