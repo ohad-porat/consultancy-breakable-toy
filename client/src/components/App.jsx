@@ -10,7 +10,6 @@ import { TopBar } from "./layout/TopBar"
 import { SquidList } from "./squids/SquidList"
 
 import "../style/main.pcss"
-// import { useEffect } from "react"
 
 const App = () => {
   /*

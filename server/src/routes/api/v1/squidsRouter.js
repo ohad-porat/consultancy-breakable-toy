@@ -8,7 +8,13 @@ export const squidsRouter = new express.Router()
 squidsRouter.get(
   "/",
   nextWrapper(async (req, res) => {
-    const squids = await Squid.query().orderBy("createdAt", "desc").limit(1000)
+    const { pageOffset, pageSize } = req.query
+    const squids = await Squid.query()
+      .orderBy([
+        { column: "createdAt", order: "desc" },
+        { column: "id", order: "desc" },
+      ])
+      .page(pageOffset, pageSize)
     return res.status(200).json({ squids })
   })
 )
