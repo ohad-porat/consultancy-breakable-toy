@@ -30,7 +30,7 @@ export class ApiClient {
   // eslint-disable-next-line class-methods-use-this
   static client() {
     return axios.create({
-      baseURL: `api/v1`,
+      baseURL: `/api/v1`,
     })
   }
 }

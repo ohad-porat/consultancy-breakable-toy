@@ -19,4 +19,13 @@ squidsRouter.get(
   })
 )
 
+squidsRouter.get(
+  "/:id",
+  nextWrapper(async (req, res) => {
+    const id = req.params.id
+    const squid = await Squid.query().findById(id)
+    return res.status(200).json({ squid })
+  })
+)
+
 // dont mind me just gonna copy and pasta all of your work JK

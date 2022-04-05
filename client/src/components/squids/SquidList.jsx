@@ -3,8 +3,8 @@ import React from "react"
 import { useLocation } from "react-router-dom"
 
 import { useSquidList } from "../hooks/useSquidList"
-import { SquidTile } from "./SquidTile"
 import { Paginator } from "./Paginator"
+import { SquidTile } from "./SquidTile"
 
 import "../../style/index.pcss"
 
