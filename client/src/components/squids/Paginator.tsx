@@ -1,10 +1,13 @@
-import React from "react"
+import React, { FC } from "react"
 
 import { Link } from "react-router-dom"
 
-export const Paginator = ({ pageOffset, lastPage }) => {
-  let firstPageLinkNumber
-  let lastPageLinkNumber
+export const Paginator: FC<{ pageOffset: number; lastPage: number }> = ({
+  pageOffset,
+  lastPage,
+}) => {
+  let firstPageLinkNumber: number
+  let lastPageLinkNumber: number
   const pageNumberButtons = []
 
   if (pageOffset < 3) {

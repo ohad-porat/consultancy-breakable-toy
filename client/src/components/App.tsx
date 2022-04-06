@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/order
 import { hot } from "react-hot-loader/root"
 // eslint-disable-next-line import/order
-import React from "react"
+import React, { FC } from "react"
 import { QueryClientProvider, QueryClient } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
@@ -12,7 +12,7 @@ import { SquidShow } from "./squids/SquidShow"
 
 import "../style/main.pcss"
 
-const App = () => {
+const App: FC = () => {
   /*
   Defaults:
   - retry: false because we don't want to retry on network errors

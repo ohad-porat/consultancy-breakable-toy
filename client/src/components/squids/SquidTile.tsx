@@ -1,8 +1,10 @@
-import React from "react"
+import React, { FC } from "react"
 
 import { Link } from "react-router-dom"
 
-export const SquidTile = ({ squid }) => {
+import { Squid } from "../../types/Squid"
+
+export const SquidTile: FC<{ squid: Squid }> = ({ squid }) => {
   const specialPowerElement = squid.specialPower ? <p>Special Power: {squid.specialPower}</p> : null
 
   return (
