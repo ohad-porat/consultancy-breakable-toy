@@ -1,6 +1,5 @@
 import React from "react"
 
-import { useQueryClient } from "react-query"
 import { useLocation } from "react-router-dom"
 
 import { useSquidList } from "../hooks/useSquidList"
@@ -31,19 +30,18 @@ export const SquidList = () => {
     ))
   }
 
-  const queryClient = useQueryClient()
-  const useSquidRefetch = () => {
-    queryClient.invalidateQueries("squids")
-  }
-
   return (
     <div className="squids-list">
       <h2 className="squids-list__header">Squid List</h2>
-      <button type="button" className="squids-list__refresh-button" onClick={useSquidRefetch}>
+      <button
+        type="button"
+        className="squids-list__refresh-button"
+        onClick={squidListQuery.refetch}
+      >
         <i className="fa-solid fa-rotate fa-2x" />
       </button>
-      <SquidForm />
-      {squidListQueryOutput}
+      <SquidForm squidListQuery={squidListQuery} />
+      <div className="squids-list__roster">{squidListQueryOutput}</div>
       <Paginator pageOffset={pageOffset} lastPage={lastPage} />
     </div>
   )

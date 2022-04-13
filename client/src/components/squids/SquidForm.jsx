@@ -2,56 +2,52 @@
 import React, { useState } from "react"
 
 import { useForm } from "react-hook-form"
-import { useQueryClient, useMutation } from "react-query"
 
 import "../../style/form.pcss"
-import { ApiClient } from "../../backend/ApiClient"
+import { useSquidMutation } from "../hooks/useSquidMutation"
+import { ErrorMessage } from "./ErrorMessage"
 
-export const SquidForm = () => {
+export const SquidForm = ({ squidListQuery }) => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm()
-  const [submitMessage, setSubmitMessage] = useState("")
-
-  const resetForm = () => {
-    reset({
+  } = useForm({
+    defaultValues: {
       name: "",
       species: "",
       specialPower: "",
-      experiencePoints: "",
-    })
+      experiencePoints: 0,
+    },
+  })
+  const [submitMessage, setSubmitMessage] = useState("")
+  // debugger
+  const resetForm = () => {
+    reset()
     setSubmitMessage("")
   }
 
-  const addSquidMutation = useMutation((formPayload) => {
-    ApiClient.post("/squids", formPayload)
-  })
-
-  const queryClient = useQueryClient()
+  const addSquidMutation = useSquidMutation(squidListQuery, setSubmitMessage)
 
   const postSquid = (data) => {
-    addSquidMutation.mutate(data, {
-      onSuccess: () => {
-        setSubmitMessage("Squid Added Successfully")
-      },
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.log(error.response.data.message)
-      },
-      onSettled: () => queryClient.invalidateQueries("squids"),
-    })
+    addSquidMutation.mutate(data)
   }
 
-  const [showForm, setShowForm] = useState("squids-form__hide")
+  const [showForm, setShowForm] = useState(false)
   const toggleShowForm = () => {
-    if (showForm === "squids-form__hide") {
-      setShowForm("squid-form__show")
+    if (showForm === false) {
+      setShowForm(true)
     } else {
-      setShowForm("squids-form__hide")
+      setShowForm(false)
     }
+  }
+
+  let formVisibility = "squids-form__hide"
+  if (showForm === true) {
+    formVisibility = "squids-form__show"
+  } else {
+    formVisibility = "squids-form__hide"
   }
 
   let submitButtonText = "Add Squid"
@@ -73,39 +69,36 @@ export const SquidForm = () => {
       >
         Add a Squid
       </h1>
-      <form onSubmit={handleSubmit(postSquid)} className={showForm}>
+      <form onSubmit={handleSubmit(postSquid)} className={formVisibility}>
         <label htmlFor="name">
           Name:
           <input
             type="text"
-            name="name"
             id="name"
             className="squids-form__input-field"
             {...register("name", { required: "Name is required" })}
           />
         </label>
-        <p className="squids-form__error">{errors.name && errors.name.message}</p>
+        <ErrorMessage errors={errors?.name} />
         <label htmlFor="species">
           Species:
           <input
             type="text"
-            name="species"
             id="species"
             className="squids-form__input-field"
             {...register("species", { required: "Species is required" })}
           />
         </label>
-        <p className="squids-form__error">{errors.species && errors.species.message}</p>
+        <ErrorMessage errors={errors?.species} />
         <label htmlFor="specialPower">
           Special Power:
           <select
             type="text"
-            name="specialPower"
             id="specialPower"
             className="squids-form__select-field"
             {...register("specialPower")}
           >
-            <option value="none"> </option>
+            <option value=""> </option>
             <option value="ink">Ink</option>
             <option value="camouflage">Camouflage</option>
             <option value="bioluminescence">Bioluminescence</option>
@@ -122,9 +115,7 @@ export const SquidForm = () => {
             {...register("experiencePoints", { required: "Experience Points is required" })}
           />
         </label>
-        <p className="squids-form__error">
-          {errors.experiencePoints && errors.experiencePoints.message}
-        </p>
+        <ErrorMessage errors={errors?.experiencePoints} />
         <input type="submit" value={submitButtonText} className="squids-form__submit-button" />
         <button type="button" className="squids-form__reset-button" onClick={resetForm}>
           Reset
