@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 
 import { useSquidList } from "../hooks/useSquidList"
 import { Paginator } from "./Paginator"
+import { SquidForm } from "./SquidForm"
 import { SquidTile } from "./SquidTile"
 
 import "../../style/index.pcss"
@@ -22,21 +23,25 @@ export const SquidList: FC = () => {
   } else if (squidListQuery.isError) {
     squidListQueryOutput = squidListQuery.error.message
   } else {
-    squidListQueryOutput = squids.results.map((squid, index) => {
-      const hrElement = index > 0 ? <hr /> : ""
-      return (
-        <div key={squid.id}>
-          {hrElement}
-          <SquidTile squid={squid} />
-        </div>
-      )
-    })
+    squidListQueryOutput = squids.results.map((squid) => (
+      <div key={squid.id}>
+        <SquidTile squid={squid} />
+      </div>
+    ))
   }
 
   return (
     <div className="squids-list">
       <h2 className="squids-list__header">Squid List</h2>
-      {squidListQueryOutput}
+      <button
+        type="button"
+        className="squids-list__refresh-button"
+        onClick={squidListQuery.refetch}
+      >
+        <i className="fa-solid fa-rotate fa-2x" />
+      </button>
+      <SquidForm squidListQuery={squidListQuery} />
+      <div className="squids-list__roster">{squidListQueryOutput}</div>
       <Paginator pageOffset={pageOffset} lastPage={lastPage} />
     </div>
   )

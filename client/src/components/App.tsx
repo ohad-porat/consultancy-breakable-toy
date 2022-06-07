@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import { TopBar } from "./layout/TopBar"
+import { SquidForm } from "./squids/SquidForm"
 import { SquidList } from "./squids/SquidList"
 import { SquidShow } from "./squids/SquidShow"
 
@@ -23,8 +24,6 @@ const App: FC = () => {
     defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } },
   })
 
-  // ohad is a total nerd hahahahahaha ULTIMATE POWERRRRRRRRRR!!!!!!!!!
-
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
@@ -34,6 +33,7 @@ const App: FC = () => {
             <h2>Hello from Squidward</h2>
           </Route>
           <Route exact path="/squids" component={SquidList} />
+          <Route exact path="/squids/new" component={SquidForm} />
           <Route exact path="/squids/:id" component={SquidShow} />
         </Switch>
       </Router>
