@@ -7,7 +7,7 @@ export class SquidSeeder {
   static async seed() {
     try {
       const config = new Configuration()
-      const squidsToCreate = config.nodeEnv === "development" ? 15 : 3
+      const squidsToCreate = config.nodeEnv === "development" ? 95 : 3
 
       const squidFactory = new Factory(Squid)
       await squidFactory.createMany(squidsToCreate)
