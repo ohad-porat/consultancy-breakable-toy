@@ -1,8 +1,8 @@
-// /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const fs = require("fs")
 const path = require("path")
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const dotenv = require("dotenv")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -27,7 +27,7 @@ if (isDevelopment) {
 }
 module.exports = {
   target: "web",
-  entry: [...initialEntryPoints, path.join(__dirname, "./src/main")],
+  entry: [...initialEntryPoints, path.join(__dirname, "./src/main.tsx")],
   context: path.resolve(__dirname),
   devtool: isDevelopment ? "source-map" : false,
   mode: isDevelopment ? "development" : "production",
@@ -47,15 +47,14 @@ module.exports = {
   ],
   module: {
     rules: [
-      // {
-      //   test: /\.(ts|tsx)$/,
-      //   exclude: /(node_modules|bower_components)/,
-      //   loader: "awesome-typescript-loader",
-      //   options: {
-      //     // useCache: true,
-      //     transpileOnly: true,
-      //   },
-      // },
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,

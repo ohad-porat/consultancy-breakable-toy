@@ -1,10 +1,13 @@
-import React from "react"
+import React, { FC } from "react"
 
 import { Link } from "react-router-dom"
 
-export const Paginator = ({ pageOffset, lastPage }) => {
-  let firstPageLinkNumber
-  let lastPageLinkNumber
+export const Paginator: FC<{ pageOffset: number; lastPage: number }> = ({
+  pageOffset,
+  lastPage,
+}) => {
+  let firstPageLinkNumber: number
+  let lastPageLinkNumber: number
   const pageNumberButtons = []
 
   if (pageOffset < 3) {
@@ -35,25 +38,25 @@ export const Paginator = ({ pageOffset, lastPage }) => {
 
   return (
     <div className="squids-pagination">
-      <Link to="/squids" className={`squids-pagination__scroll-icon ${disableForwardAndLast}`}>
+      <Link to="/squids" className={`squids-pagination__scroll-icon link ${disableForwardAndLast}`}>
         <i className="fa-solid fa-angles-left" />
       </Link>
       <Link
         to={`/squids?page=${pageOffset}`}
-        className={`squids-pagination__scroll-icon ${disableForwardAndLast}`}
+        className={`squids-pagination__scroll-icon link ${disableForwardAndLast}`}
       >
         <i className="fa-solid fa-angle-left" />
       </Link>
       {pageNumberButtons}
       <Link
         to={`/squids?page=${pageOffset + 2}`}
-        className={`squids-pagination__scroll-icon ${disablePreviousAndFirst}`}
+        className={`squids-pagination__scroll-icon link ${disablePreviousAndFirst}`}
       >
         <i className="fa-solid fa-angle-right" />
       </Link>
       <Link
         to={`/squids?page=${lastPage}`}
-        className={`squids-pagination__scroll-icon ${disablePreviousAndFirst}`}
+        className={`squids-pagination__scroll-icon link ${disablePreviousAndFirst}`}
       >
         <i className="fa-solid fa-angles-right" />
       </Link>
